@@ -1,5 +1,5 @@
 from langgraph.graph import StateGraph
-from langgraphagenticai.state.state import State
+from src.langgraphagenticai.state.state import State
 from langgraph.graph import START, END
 from src.langgraphagenticai.nodes.basic_chatbot_node import BasicChatbotNode
 
@@ -19,3 +19,14 @@ class GraphBuilder:
         self.graph_builder.add_node("chatbot",self.basic_chatbot_node.process)
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_edge("chatbot", END)
+
+    def setup_graph(self, usecase:str):
+        """
+        sets up the graph for the specified use case.
+        """
+        if usecase == "Basic Chatbot":
+            self.basic_chatbot_build_graph()
+        else:
+            raise ValueError(f"Unsupported use case: {usecase}")
+        
+        return self.graph_builder.compile()
