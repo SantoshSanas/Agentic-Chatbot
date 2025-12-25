@@ -11,4 +11,4 @@ class BasicChatbotNode:
         """
         process method to handle incoming messages and generate responses using the LLM.
         """
-        return {"messages":self.llm.invoke(state["message"])}
+        return {"messages":self.llm.invoke(state["messages"])}
