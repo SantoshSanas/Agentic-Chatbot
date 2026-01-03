@@ -18,7 +18,10 @@ def load_langgraph_agentic_ai_app():
         st.error("No user input received. Please make selections in the sidebar.")
         return
     
-    user_message = st.chat_input("Enter your message to the Agentic AI:")
+    if st.session_state.IsFetchButtonClicked:
+        user_message = st.session_state.timeframe
+    else:
+        user_message = st.chat_input("Enter your message to the Agentic AI:")
 
     if user_message:
         try:
